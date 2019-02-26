@@ -31,7 +31,7 @@ then change into your projects directory and invoke
 
 .. code-block:: bash
 
-	cookiecutter --no-input https://github.com/awesto/cookiecutter-djangocms-cascade
+	cookiecutter --no-input https://github.com/jrief/cookiecutter-djangocms-cascade
 
 This creates a directory named ``my-cms``. Using this directory, either run the django-CMS demo locally, or
 deploy it onto a Docker Machine.
@@ -80,7 +80,7 @@ provided in the previous statement.
 Run django-CMS in Docker behind NGiNX
 -------------------------------------
 
-In the previous configuration, uWSGI is configured to listen on port 9009 for HTTP requests. Here
+In the previous configuration, uWSGI is configured to listen on port 9009 for HTTP requests. There
 we can connect the browser directly onto the Docker machine's IP address. In a productive
 environment, we might want to use NGiNX as a proxy in front of our Django application server. This
 allows us to proxy services for multiple domains and to use https.
