@@ -1,0 +1,82 @@
+version: '2.0'
+
+services:
+  postgresdb:
+    restart: always
+    image: postgres
+    env_file:
+      - docker-files/databases.environ
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - cmsnet
+
+  redishost:
+    image: redis
+    volumes:
+      - 'redisdata:/data'
+    networks:
+      - cmsnet
+
+  elasticsearch:
+    image: elasticsearch:1.7.5
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - cmsnet
+
+  wsgiapp:
+    restart: always
+    build:
+      context: .
+      dockerfile: docker-files/wsgiapp.dockerfile
+    image: {{ cookiecutter.project_slug }}
+    env_file:
+      - docker-files/databases.environ
+    environment:
+      - VIRTUAL_HOST={{ cookiecutter.virtual_host }}
+{%- if cookiecutter.use_uwsgi_protocol == 'y' %}
+      - VIRTUAL_PROTO=uwsgi
+      - LETSENCRYPT_HOST={{ cookiecutter.virtual_host }}
+      - LETSENCRYPT_EMAIL={{ cookiecutter.email }}
+{%- endif %}
+      - DJANGO_SETTINGS_MODULE={{ cookiecutter.app_name }}.settings
+    volumes:
+      - cmsmedia:/web/workdir
+    command: uwsgi --ini uwsgi.ini
+    depends_on:
+      - postgresdb
+      - redishost
+      - elasticsearch
+    networks:
+      - cmsnet
+{%- if cookiecutter.use_uwsgi_protocol == 'y' %}
+      - nginx-proxy
+    expose:
+      - 9009
+{%- else %}
+    ports:
+      - 9009:9009
+{%- endif %}
+
+networks:
+  cmsnet:
+{%- if cookiecutter.use_uwsgi_protocol == 'y' %}
+  nginx-proxy:
+    external: true
+{%- endif %}
+
+volumes:
+  pgdata:
+  redisdata:
+  cmsmedia:
+  esdata:

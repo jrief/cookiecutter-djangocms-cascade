@@ -1,0 +1,12 @@
+{% raw %}{% load i18n menu_tags %}{% spaceless %}
+{% if languages|length > 1 %}
+<li class="nav-item ml-auto">
+	<a class="nav-link{% if current_language == 'de' %} active{% endif %}" href="{% page_language_url 'de' %}">DE</a>
+</li>
+<li class="nav-item py-2">
+	<i class="h-100 border-left"></i>
+</li>
+<li class="nav-item ml-0">
+	<a class="nav-link{% if current_language == 'en' %} active{% endif %}" href="{% page_language_url 'en' %}">EN</a>
+</li>
+{% endif %}{% endspaceless %}{% endraw %}

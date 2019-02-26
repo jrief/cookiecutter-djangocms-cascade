@@ -1,0 +1,35 @@
+{{ '{%' }} extends "{{ cookiecutter.app_name }}/pages/base.html" {{ '%}' }}{% raw %}
+{% load static cms_tags i18n sekizai_tags sass_tags %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock %}
+
+{% block head %}
+	{{ block.super }}
+	{% addtoblock "css" %}<link href="{% sass_src {% endraw %}'{{ cookiecutter.app_name }}/css/default.scss'{% raw %} %}" rel="stylesheet" type="text/css" />{% endaddtoblock %}
+{% endblock head %}
+
+
+{% block body %}
+	<header>
+	{% block header %}{% include {% endraw %}"{{ cookiecutter.app_name }}/nav/navbar.html"{% raw %} with navbar_classes="navbar-expand-lg navbar-light bg-light" %}{% endblock %}
+	</header>
+
+	<main>
+	{% block breadcrumb %}{% endblock %}
+
+	{% block main-content %}{% placeholder "Main Content" inherit or %}
+		<div class="container">
+			<div class="row shop-starter-template">
+				<div class="col">
+					<h1>Base Template</h1>
+					<p class="lead">This document does not contain any content yet.</p>
+				</div>
+			</div>
+		</div>
+	{% endplaceholder %}{% endblock main-content %}
+	</main>
+
+	<footer class="footer">
+	{% block footer %}{% include {% endraw %}"{{ cookiecutter.app_name }}/pages/footer.html"{% raw %} %}{% endblock footer %}
+	</footer>
+{% endblock body %}{% endraw %}

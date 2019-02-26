@@ -1,0 +1,12 @@
+*
+!docker-files
+!{{ cookiecutter.app_name }}
+!.coveragerc
+!.pylintrc
+!manage.py
+!package.json
+!Pipfile
+!README.md
+!requirements.txt
+!worker.py
+!wsgi.py

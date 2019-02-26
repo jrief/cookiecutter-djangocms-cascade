@@ -1,0 +1,18 @@
+{% raw %}{% extends "bootstrap4/includes/nav-navbar.html" %}
+{% load  static bootstrap_tags menu_tags sekizai_tags %}
+{% spaceless %}
+
+{% block extra-scripts %}
+	{% addtoblock "js" %}<script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}" type="text/javascript"></script>{% endaddtoblock %}
+	{% addtoblock "js" %}<script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>{% endaddtoblock %}
+{% endblock %}
+
+{% block navbar-nav %}
+	<ul class="navbar-nav w-100">
+		{% main_menu "bootstrap4/menu/navbar.html" %}
+		{% language_chooser {% endraw %}"{{ cookiecutter.app_name }}/nav/language-chooser.html"{% raw %} %}
+	</ul>
+{% endblock %}
+
+{% endspaceless %}
+{% endraw %}

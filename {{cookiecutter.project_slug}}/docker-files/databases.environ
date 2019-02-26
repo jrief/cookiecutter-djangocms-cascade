@@ -1,0 +1,7 @@
+DATABASE_ENGINE=django.db.backends.postgresql
+POSTGRES_USER=djangouser
+POSTGRES_PASSWORD=gzKmrEvLGuMgI5cWn3Tt
+POSTGRES_DB={{ cookiecutter.app_name }}
+POSTGRES_HOST=postgresdb
+POSTGRES_PORT=5432
+REDIS_HOST=redishost
