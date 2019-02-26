@@ -1,4 +1,4 @@
-version: '2.0'
+version: '2.1'
 
 services:
   postgresdb:
@@ -52,6 +52,7 @@ services:
       - DJANGO_SETTINGS_MODULE={{ cookiecutter.app_name }}.settings
     volumes:
       - cmsmedia:/web/workdir
+      - nginxproxy_nginxvhostd:/web/nginx-conf
     command: uwsgi --ini uwsgi.ini
     depends_on:
       - postgresdb
@@ -80,3 +81,5 @@ volumes:
   redisdata:
   cmsmedia:
   esdata:
+  nginxproxy_nginxvhostd:
+    external: true

@@ -23,6 +23,10 @@ COPY wsgi.py /web/wsgi.py
 COPY manage.py /web/manage.py
 COPY docker-files/uwsgi.ini /web/uwsgi.ini
 
+# add extra configuration to NGiNX proxy
+VOLUME /web/nginx-conf
+COPY docker-files/nginx-vhost.conf /web/nginx-conf/{{ cookiecutter.virtual_host }}
+
 # handle static files
 ENV DJANGO_STATIC_ROOT=$DJANGO_STATIC_ROOT
 ENV DJANGO_WORKDIR=$DJANGO_WORKDIR
