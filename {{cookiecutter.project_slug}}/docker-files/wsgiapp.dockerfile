@@ -9,7 +9,7 @@ ARG DJANGO_STATIC_ROOT=/web/staticfiles
 RUN apt-get upgrade -y
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs optipng jpegoptim
-RUN pip install pipenv
+RUN pip install --upgrade pip
 
 # install project specific requirements
 COPY requirements.txt /web/requirements.txt
@@ -27,7 +27,7 @@ COPY docker-files/uwsgi.ini /web/uwsgi.ini
 VOLUME /web/nginx-conf
 COPY docker-files/nginx-vhost.conf /web/nginx-conf/{{ cookiecutter.virtual_host }}
 
-# handle static files
+# handle static and media files
 ENV DJANGO_STATIC_ROOT=$DJANGO_STATIC_ROOT
 ENV DJANGO_WORKDIR=$DJANGO_WORKDIR
 RUN mkdir -p $DJANGO_STATIC_ROOT/CACHE
