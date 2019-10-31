@@ -2,17 +2,24 @@
 {% load  static bootstrap_tags menu_tags sekizai_tags %}
 {% spaceless %}
 
-{% block extra-scripts %}
-	{% addtoblock "js" %}<script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}" type="text/javascript"></script>{% endaddtoblock %}
-	{% addtoblock "js" %}<script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>{% endaddtoblock %}
-{% endblock %}
+{% block navbar %}
+<a class="navbar-brand py-0 pl-3 pl-lg-5" href="/">
+	<img src="{% static '{% endraw %}{{ cookiecutter.app_name }}{% raw %}/images/brand-logo.svg' %}" height="40" alt="{% endraw %}{{ cookiecutter.project_name }}{% raw %}" />
+</a>
 
-{% block navbar-nav %}
+<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	<span class="navbar-toggler-icon"></span>
+	<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse">
 	<ul class="navbar-nav w-100">
+		<li class=" ml-auto"></li>
 		{% main_menu "bootstrap4/menu/navbar.html" %}
-		{% language_chooser {% endraw %}"{{ cookiecutter.app_name }}/nav/language-chooser.html"{% raw %} %}
+		{% language_chooser "{% endraw %}{{ cookiecutter.app_name }}{% raw %}/nav/language-chooser.html" %}
 	</ul>
-{% endblock %}
+</div>
+{% endblock navbar %}
 
-{% endspaceless %}
-{% endraw %}
+{% endspaceless %}{% endraw %}

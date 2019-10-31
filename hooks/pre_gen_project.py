@@ -56,3 +56,11 @@ if "{{ cookiecutter.use_docker }}".lower() == "n":
                     )
                     + TERMINATOR
                 )
+
+languages = "{{ cookiecutter.languages }}".replace(' ', '').split(',')
+for lang in languages:
+    assert len(lang) == 2 and lang.lower() == lang, "Each language code shall consist of two lowercase letters, '" + lang + "' does not."
+if "{{ cookiecutter.use_i18n }}" == 'y':
+    assert len(languages) > 1, "'use_i18n' is set with less than two languages, which doesn't make sense."
+else:
+    assert len(languages) == 1, "If 'use_i18n' is unset, only one language shall be specified in 'languages'."

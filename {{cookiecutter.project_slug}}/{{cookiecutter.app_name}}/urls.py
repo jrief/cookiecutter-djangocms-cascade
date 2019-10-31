@@ -5,7 +5,6 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.http import HttpResponse
-from sekizai.context import SekizaiContext
 from cms.sitemaps import CMSSitemap
 
 sitemaps = {'cmspages': CMSSitemap}
@@ -22,7 +21,7 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
 urlpatterns.extend(i18n_patterns(
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^', include('cms.urls')),
 ))
 if settings.DEBUG:

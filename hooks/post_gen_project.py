@@ -144,9 +144,6 @@ def main():
 
     set_django_secret_key(os.path.join("{{ cookiecutter.app_name }}", "settings.py"))
 
-    if "{{ cookiecutter.use_pycharm }}".lower() == "n":
-        remove_pycharm_files()
-
     if "{{ cookiecutter.use_docker }}".lower() == "y":
         pipenv_to_requirements()
         set_database_password("docker-files/databases.environ")

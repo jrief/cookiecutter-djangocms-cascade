@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "<2"
+django = "<3"
 djangocms-cascade = "*"
 django-compressor = "*"
 django-filer = "*"
@@ -18,19 +18,17 @@ django-redis-cache = "*"
 django-redis-sessions = "*"
 uWSGI = "*"
 {% endif -%}
-djangocms-bootstrap = ">=1"
-elasticsearch = "<1.8"
+djangocms-bootstrap = "*"
 libsass = "*"
 
 [dev-packages]
 tox = "*"
-pytest = "*"
 pytest-django = "*"
 beautifulsoup4 = "*"
 lxml = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
 
 [pipenv]
 allow_prereleases = true

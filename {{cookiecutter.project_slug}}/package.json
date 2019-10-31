@@ -2,13 +2,14 @@
   "name": "{{ cookiecutter.project_slug }}",
   "version": "{{ cookiecutter.version }}",
   "dependencies": {
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.7",
+    "a-color-picker": "^1.1.7",
     "autoprefixer": "^8.0.0",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
     "leaflet": "^1.1.0",
     "leaflet-easybutton": "^2.2.0",
+    "popper.js": "^1.14.7",
     "postcss": "^6.0.17",
     "postcss-cli": "^5.0.0",
     "select2": "~4.0.3"
