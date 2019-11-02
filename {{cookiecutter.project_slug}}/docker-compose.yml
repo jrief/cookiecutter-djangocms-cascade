@@ -41,7 +41,6 @@ services:
     depends_on:
       - postgresdb
       - redishost
-      - elasticsearch
     networks:
       - cmsnet
 {%- if cookiecutter.use_uwsgi_protocol == 'y' %}
